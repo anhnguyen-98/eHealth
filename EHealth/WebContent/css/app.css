@@ -18,11 +18,7 @@ body {
 .container {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(
-        115deg,
-        rgba(58, 58, 158, 0.8),
-        rgba(136, 136, 206, 0.7)
-    );
+    background-image: url("1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -38,8 +34,18 @@ body {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
-.content {
+.update_content {
     max-width: 720px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.search_content {
+    max-width: 670px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.doctor-list_content {
+    max-width: 1100px;
     margin: 0 auto;
     padding: 30px 0;
 }
@@ -48,10 +54,20 @@ body {
     margin-bottom: 25px;
 }
 
-#form {
+.sub_container {
     background-color: var(--color-darkblue-alpha);
     padding: 40px;
     border-radius: 10px;
+}
+.sub_container_no_border_radius_bottom {
+    background-color: var(--color-darkblue-alpha);
+    padding: 40px 40px 1px 40px;
+    border-radius: 10px 10px 0px 0px;
+}
+.sub_container_no_border_radius_top {
+    background-color: var(--color-darkblue-alpha);
+    padding: 20px 40px 40px 40px;
+    border-radius: 0px 0px 10px 10px;
 }
 .form-group {
     display: block;
@@ -83,6 +99,7 @@ label {
     padding: 0 12px 0 12px;
     border: 1px solid #ced4da;
 }
+
 .form-control:focus, #health-information:focus {
     border-color: #80bdff;
     outline: 0; 
@@ -137,4 +154,43 @@ select {
 a {
 	text-decoration: none;
 	color: var(--color-green);
+}
+
+
+
+
+.styled-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 8px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:hover {
+	
+}
+.styled-table tbody tr:nth-of-type(even) {
+   /* background-color: #f3f3f3; */
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
 }

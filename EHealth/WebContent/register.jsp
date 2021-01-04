@@ -10,7 +10,7 @@
 <body>
 	<div class="container">
 		<div class="loginRegisterContent">
-			<form id= "form" action = "LoginRegister" method = "post">
+			<form class="sub_container" action = "register" method = "post">
 				<div style="text-align:center;"><h2>Create your account</h2></div>
 				<br>
 				<div class="form-group">

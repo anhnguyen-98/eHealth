@@ -96,4 +96,18 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return status;
 	}
+	public int insertUserHealthProblemToDB(String healthProblem, String username) {
+		int status = 0;
+		try {
+			conn = DBConnection.getConnection();
+			ps = conn.prepareStatement("update users set health_problem=?, where username = ?");
+			ps.setString(1, healthProblem);
+			ps.setString(2, username);
+			status = ps.executeUpdate();
+			conn.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return status;
+	}
 }
