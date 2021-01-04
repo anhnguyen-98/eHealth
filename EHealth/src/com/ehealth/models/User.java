@@ -11,7 +11,6 @@ public class User {
 	private String insuranceType; // true: public, false: private
 	private String health_problem;
 	private String health_information;
-	private float maximum_search_distance;
 	
 	public String getUsername() {
 		return username;
@@ -67,12 +66,6 @@ public class User {
 	}
 	public void setHealth_problem(String health_problem) {
 		this.health_problem = health_problem;
-	}
-	public float getMaximum_search_distance() {
-		return maximum_search_distance;
-	}
-	public void setMaximum_search_distance(float maximum_search_distance) {
-		this.maximum_search_distance = maximum_search_distance;
 	}
 	public String getHealth_information() {
 		return health_information;
