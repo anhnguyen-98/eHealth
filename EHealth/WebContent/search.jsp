@@ -9,39 +9,50 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<script src="https://kit.fontawesome.com/6ad0ff1f04.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="container">
+		<form id="menu" action="menu" method="post" class="navbar">
+			<button class="menu-btn" id="edit-information" type="submit" name="menu" value="information">Your Information</button>
+			<button class="menu-btn" id="logout" type="submit" name="menu" value="logout">Logout</button>
+		</form>
 		<div class="search_content">
 			<form class="sub_container" action="search" method="post">
 				<div class="form-group">
 					<label>Health problem</label>
-					<select name="healthProblem" id="health-problem" class="form-control">
-						<option disabled selected value>Your problem is about</option>
-						<option value="certain infectious and parasitic">Certain infectious and parasitic</option>
-						<option value="endocrine, nutritional and metabolic">Endocrine, nutritional and metabolic </option>
-						<option value="mental and behavioural disorders">Mental and behavioural disorders</option>
-						<option value="the nervous system">The nervous system</option>
-						<option value="the eye and adnexa">The eye and adnexa</option>
-						<option value="the ear and mastoid process">The ear and mastoid process</option>
-						<option value="the circulatory system">The circulatory system</option>
-						<option value="the respiratory system">The respiratory system</option>
-						<option value="the digestive system">The digestive system</option>
-						<option value="the skin and subcutaneous tissue">The skin and subcutaneous tissue</option>
-						<option value="the musculoskeletal system and connective tissue">The musculoskeletal system and connective tissue</option>
-						<option value="the genitourinary system">The genitourinary system</option>
-						<option value="pregnancy, childbirth and the puerperium">Pregnancy, childbirth and the puerperium</option>
-						<option value="certain conditions originating in the perinatal period">Certain conditions originating in the perinatal period</option>
-						<option value="congenital malformations, deformations and chromosomal abnormalities">Congenital malformations, deformations and chromosomal abnormalities</option>
-						<option value="injury, poisoning and certain other consequences of external causes">Injury, poisoning and certain other consequences of external causes</option>
+					<select name="healthProblem" id="health-problem" class="form-control" required>
+						<option disabled selected value="">Your problem</option>
+						<option value="flu fever">I have flu/ fever</option>
+						<option value="headache">I have headache</option>
+						<option value="eye pain">I have eye pain</option>
+						<option value="can't breath">I can't breath</option>
+						<option value="ear pain">I have ear pain</option>
+						<option value="mouth lesion">I have mouth lesions</option>
+						<option value="toothache">I have toothache</option>
+						<option value="sore throat">I have sore throat</option>
+						<option value="neck pain">I have neck pain</option>
+						<option value="arm pain">I have arm pain</option>
+						<option value="chest pain">I have chest pain</option>
+						<option value="abdominal pain">I have abdominal pain</option>
+						<option value="stomach-ache">I have stomach-ache</option>
+						<option value="back pain">I have back pain</option>
+						<option value="leg pain">I have leg pain</option>
+						<option value="joint pain">I have joint pain</option>
+						<option value="body aches">I have body aches</option>
+						<option value="skin issue">I have skin issue</option>
+						<option value="psychological problem">I have psychological problem</option>
+						<option value="pregnancy">Pregnancy check</option>
+						<option value="gynecology">Gynecology</option>
+						<option value="andrology">Andrology</option>
+						<option value="neurology">Neurology</option>
 						<option value="other">Other</option>
 					</select>
 				</div>
 				<div class="form-group">
 					<label>Distance of search</label>
 					<select name="search_distance" id="search_distance" class="form-control">
-						<option disabled selected> --All--</option>
+						<option disabled selected>--All--</option>
 						<option value= "3">3 km</option>
 						<option value= "5">5 km</option>
 						<option value= "10">10 km</option>
@@ -49,12 +60,27 @@
 						<option value= "25">25 km</option>
 					</select>
 				</div>
-
 				<div class="form-group">
-					<button type="submit" id="submit" name="confirm" value="confirm" class="submit">Submit</button>
+					<button type="submit" id="submit" name="confirm" value="confirm" class="submit"><i class="fas fa-search"></i></button>
 				</div>
 			</form>
 		</div>
 	</div>
+	<%--<script>
+		var data = $('#export-information').val();
+		document.getElementById("export-information").addEventListener("click", function(event){
+			event.preventDefault();
+			$.ajax({
+			     url: "/menu", 
+			     type: "post", 
+			     data: {submitType: data},
+			     success: 
+		            function(msg){
+		                // msg is the response you got from the server!
+		                alert("Email Sent");
+		            }                   
+			});
+		});
+	</script>--%>
 </body>
 </html>

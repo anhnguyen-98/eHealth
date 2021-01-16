@@ -12,9 +12,9 @@
 </head>
 <body>
 	<div class="container">
-		<div class=loginRegisterContent>
+		<div class=loginRegister_content>
 			<form class="sub_container" action="login" method = "post" >
-				<div style="text-align:center;"><h2>Login</h2></div>
+				<div style="text-align:center;"><h2>E-Health Login</h2></div>
 				<br>
 				<div><i style="color:light">${message}</i></div>
 				<div><i style="color:light">${successMessage}</i></div>
@@ -32,10 +32,12 @@
 				</div>
 				<div class="flex-container">
 					<a href="register.jsp">Create an account</a>
-					<button type="submit" id="submit" name="submit" value="login" class="submit spec-btn">Login</button>
+					<button type="submit" id="submit" name="submit" value="login" class="submit _38-width">Login</button>
 				</div>
 			</form>
+			<div id = "mapholder"></div>
 		</div>
+		
 	</div>
 	<script src="js/app.js"></script>
 </body>

@@ -41,10 +41,11 @@ public class UpdateController extends HttpServlet {
 		//save user information into session
 		HttpSession session = request.getSession();
 		User u = (User) (session.getAttribute("user"));
+		String non_encrypt_password = (String) session.getAttribute("non_encrypt_password");
 		//get user from database
 		UserDAO userDAO = new UserDAOImpl();
-		User user = userDAO.getUserFromDB(u.getUsername(), u.getPassword());
-		
+		User user = userDAO.getUserFromDB(u.getUsername(), non_encrypt_password);
+		session.setAttribute("user", user);
 		//insert all user info into database
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -54,7 +55,7 @@ public class UpdateController extends HttpServlet {
 		user.setHealth_information(healthInformation);
 		userDAO.insertUserInformationToDB(user);
 		//page redirection
-		response.sendRedirect("search.jsp");
+		request.getRequestDispatcher("search.jsp").forward(request, response);
 	}
 
 

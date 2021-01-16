@@ -1,11 +1,18 @@
 package com.ehealth.models;
 
 public class Doctor {
+	private int DoctorID;
 	private String firstName;
 	private String lastName;
 	private String address;
 	private String specialization;
 	private float distanceToUser;
+	public int getDoctorID() {
+		return DoctorID;
+	}
+	public void setDoctorID(int doctorID) {
+		DoctorID = doctorID;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

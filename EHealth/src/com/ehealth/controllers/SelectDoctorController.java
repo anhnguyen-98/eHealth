@@ -1,7 +1,6 @@
 package com.ehealth.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -30,32 +29,21 @@ public class SelectDoctorController extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		//get doctors list from session
+		@SuppressWarnings("unchecked")
 		ArrayList<Doctor> doctors = (ArrayList<Doctor>) session.getAttribute("doctors");
 		
 		//Handle which doctor user selected to make appointment
-		String doctor_index = request.getParameter("appointment");
-		Integer x = Integer.valueOf(doctor_index);
-		Doctor doctor = doctors.get(x);
-		
-		//demo display selected doctor
-		PrintWriter w = response.getWriter();
-		w.println("Doctor name: " + doctor.getFirstName() + " " + doctor.getLastName());
-		w.println("Doctor address: " + doctor.getAddress());
-		w.println("Doctor specialization: " + doctor.getSpecialization());
-		w.println("Distance to you:  " + doctor.getDistanceToUser() + " km");
-		
+		String doctor_index_String = request.getParameter("appointment");
+		Integer doctor_index = Integer.valueOf(doctor_index_String);
+		Doctor doctor = doctors.get(doctor_index);
+		session.setAttribute("selected-doctor", doctor);
+		//when already selected, redirect to page make-appointment
+		request.getRequestDispatcher("make-appointment.jsp").forward(request, response);
 	}
 
 }

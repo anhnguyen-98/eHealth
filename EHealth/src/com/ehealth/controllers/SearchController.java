@@ -39,12 +39,16 @@ public class SearchController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		//get user inputs
 		String healthProblem = request.getParameter("healthProblem");
 		String search_distance_string = request.getParameter("search_distance");
+		System.out.println(search_distance_string);
 		//get user from session
-		HttpSession session = request.getSession();
+		
 		User u = (User) (session.getAttribute("user"));
+		session.setAttribute("healthProblem", healthProblem);
+		System.out.println(healthProblem);
 		//get user from database
 		UserDAO userDAO = new UserDAOImpl();
 		User user = userDAO.getUserFromDB(u.getUsername(), u.getPassword());
@@ -58,8 +62,9 @@ public class SearchController extends HttpServlet {
 		double longitude = Double.valueOf((String) session.getAttribute("lon"));
 		//when user doesn't select distance of search, it means all doctors are being taken from database
 		if (search_distance_string==null) {
+			session.setAttribute("search_distance", search_distance_string );
 			//get all doctors from database 
-			java.util.List<Doctor> doctors = doctorDAO.getAllDoctors(latitide, longitude);
+			java.util.List<Doctor> doctors = doctorDAO.getAllDoctors(latitide, longitude, healthProblem);
 			//save doctors into session
 			session.setAttribute("doctors", doctors);
 			//save doctors into attribute "doctors" to access doctors data in "doctors-list.jsp"
@@ -69,8 +74,9 @@ public class SearchController extends HttpServlet {
 		//when user select the distance of search
 		} else {
 			double search_distance = Double.valueOf(search_distance_string);
+			session.setAttribute("search_distance", search_distance_string);
 			//get doctors base on latitude and longitude
-			java.util.List<Doctor> doctors = doctorDAO.getDoctorbyDistance(latitide, longitude, search_distance);
+			java.util.List<Doctor> doctors = doctorDAO.getDoctorbyDistanceAndHealthProblem(latitide, longitude, search_distance, healthProblem);
 			//save doctors into session
 			session.setAttribute("doctors", doctors);
 			//save doctors into attribute "doctors" to access doctors data in "doctors-list.jsp"

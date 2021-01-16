@@ -3,6 +3,8 @@ package com.ehealth.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.ehealth.models.User;
 
@@ -15,7 +17,7 @@ public class UserDAOImpl implements UserDAO {
 		int status = 0;
 		try {
 			conn = DBConnection.getConnection();
-			ps=conn.prepareStatement("insert into users (username, email, password) values(?,?,?)");
+			ps=conn.prepareStatement("INSERT INTO users (username, email, password) VALUES(?,?,md5(?))");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getEmail());
 			ps.setString(3, user.getPassword());
@@ -33,10 +35,9 @@ public class UserDAOImpl implements UserDAO {
 		User user = new User();
 		try {
 			conn = DBConnection.getConnection();
-			ps = conn.prepareStatement("Select * from users where username = ? and password = ?");
+			ps = conn.prepareStatement("SELECT * FROM users WHERE username = ? and password = md5(?)");
 			ps.setString(1, username);
 			ps.setString(2, password);
-			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -64,7 +65,7 @@ public class UserDAOImpl implements UserDAO {
 		boolean usernameExisted = false;
 		try {
 			conn = DBConnection.getConnection();
-			ps = conn.prepareStatement("select * from users where username = ?");
+			ps = conn.prepareStatement("SELECT * FROM users WHERE username = ?");
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -80,15 +81,14 @@ public class UserDAOImpl implements UserDAO {
 		int status = 0;
 		try {
 			conn = DBConnection.getConnection();
-			ps = conn.prepareStatement("update users set firstName=? , lastName=? , date_of_birth = ?, insuranceName=?, insuranceType=?, health_problem=?, health_information=?  where username = ?");
+			ps = conn.prepareStatement("UPDATE users SET firstName=?, lastName=?, date_of_birth = ?, insuranceName=?, insuranceType=?, health_information=?  WHERE username = ?");
 			ps.setString(1, user.getFirstName());
 			ps.setString(2, user.getLastName());
 			ps.setString(3, user.getDate_of_birth());
 			ps.setString(4, user.getInsuranceName());
 			ps.setString(5, user.getInsuranceType());
-			ps.setString(6, user.getHealth_problem());
-			ps.setString(7, user.getHealth_information());
-			ps.setString(8, user.getUsername());
+			ps.setString(6, user.getHealth_information());
+			ps.setString(7, user.getUsername());
 			status = ps.executeUpdate();
 			conn.close();
 		} catch (Exception e) {
@@ -100,7 +100,7 @@ public class UserDAOImpl implements UserDAO {
 		int status = 0;
 		try {
 			conn = DBConnection.getConnection();
-			ps = conn.prepareStatement("update users set health_problem=?, where username = ?");
+			ps = conn.prepareStatement("UPDATE users SET health_problem = ? WHERE username = ?");
 			ps.setString(1, healthProblem);
 			ps.setString(2, username);
 			status = ps.executeUpdate();
@@ -110,4 +110,67 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return status;
 	}
+	@Override
+	public List<User>getAllUsers() {
+        List<User>users=new ArrayList<>();
+        try{
+            conn = DBConnection.getConnection();
+            ps=conn.prepareStatement("select * from users");
+            ResultSet results = ps.executeQuery();
+            while(results.next())
+            {
+                User user= new User();
+                user.setUsername(results.getString("username"));
+                user.setFirstName(results.getString("firstName"));
+                user.setEmail(results.getString("email"));
+                user.setPassword(results.getString("password"));
+                user.setHealth_problem(results.getString("health_problem"));
+                user.setHealth_information(results.getString("health_information"));
+                user.setLastName(results.getString("lastname"));
+                user.setDate_of_birth(results.getString("date_of_birth"));
+                user.setInsuranceName(results.getString("insuranceName"));
+                user.setInsuranceType(results.getString("insuranceType"));
+                users.add(user);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return users;
+    }
+	
+	public void EditUser(String email, String password, String insuranceType, String insuranceName, String username, String healthInformation) {
+        try{
+            conn= DBConnection.getConnection();
+            ps=conn.prepareStatement("update users set email=?, password = md5(?), insuranceType = ?, insuranceName=?, health_information = ? where username = ?");
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.setString(3, insuranceType);
+            ps.setString(4, insuranceName);
+            ps.setString(5, healthInformation);
+            ps.setString(6, username);
+            ps.executeUpdate();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+	public void deleteUserInList(User user) {
+        try
+        {
+            conn=DBConnection.getConnection();
+            ps=conn.prepareStatement("DELETE FROM users where username = ? and password = ?");
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.executeUpdate();
+            conn.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    }
 }

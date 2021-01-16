@@ -30,6 +30,10 @@
 </head>
 <body>
 	<div class="container">
+		<form id="menu" action="menu" method="post" class="navbar">
+			<button class="menu-btn" id="search" type="submit" name="menu" value="search">Search</button>
+			<button class="menu-btn" id="logout" type="submit" name="menu" value="logout">Logout</button>
+		</form>
 		<div class="update_content">
 			<div class="sub_container">
 				<form id="form" action="update" method="post">
@@ -62,9 +66,8 @@
 						<label>Health information</label>
 						<textarea name="healthInformation" id="health-information" placeholder="Enter your health information here..."></textarea>
 					</div>
-					
 					<div class="form-group">
-						<button type="submit" id="submit" name="confirm" value="confirm" class="submit">Submit</button>
+						<button type="submit" id="submit" name="confirm" value="confirm" class="submit">Confirm</button>
 					</div>
 				</form>
 			</div>
