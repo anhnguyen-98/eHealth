@@ -5,10 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/app.css" type="text/css">
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>Login Page</title>
-
 </head>
 <body>
 	<div class="container">
@@ -35,10 +34,22 @@
 					<button type="submit" id="submit" name="submit" value="login" class="submit _38-width">Login</button>
 				</div>
 			</form>
-			<div id = "mapholder"></div>
 		</div>
 		
 	</div>
-	<script src="js/app.js"></script>
+<script>
+//use IPinfo.io API to get user location
+function getLocationByDefault() {
+    $.getJSON("https://ipinfo.io?token=b0244f6f14547e", onLocationGot);
+  }
+ 
+function onLocationGot(info) {
+    let position = info.loc.split(",");
+	document.getElementById("lat").value = position[0];
+	document.getElementById("lon").value = position[1];
+ }
+ 
+ getLocationByDefault()
+</script>
 </body>
 </html>

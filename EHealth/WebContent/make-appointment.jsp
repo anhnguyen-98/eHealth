@@ -18,7 +18,7 @@
 			<button class="menu-btn" id="edit-information" type="submit" name="menu" value="information">Your Information</button>
 			<button class="menu-btn" id="logout" type="submit" name="menu" value="logout">Logout</button>
 		</form>
-		<div class="doctor_content">
+		<div class="appointment_content">
 			<form class="sub_container" action="make-appointment" method="post">
 				<div class="form-group">
 					<label>Date & Time</label>
@@ -47,28 +47,29 @@
 	</div>
 	
  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker({
-    	changeMonth: true,
-        changeYear: true,
-        showOtherMonths: true,
-        selectOtherMonths: true,
-        showButtonPanel: true
-    });
-    $( "#datepicker" ).datepicker( "option", "showAnim", "slideDown" );
-    $( "#datepicker" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
-    $('#timepicker').timepicker({
-        timeFormat: 'HH:mm',
-        interval: 10,
-        minTime: '8',
-        maxTime: '16:00',
-        defaultTime: '8',
-        startTime: '08:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
-  } );
+ //jQuery date and time picker
+ $(function() {
+   $( "#datepicker" ).datepicker({
+   	changeMonth: true,
+       changeYear: true,
+       showOtherMonths: true,
+       selectOtherMonths: true,
+       showButtonPanel: true
+   });
+   $( "#datepicker" ).datepicker( "option", "showAnim", "slideDown" );
+   $( "#datepicker" ).datepicker( "option", "dateFormat", "dd/mm/yy" );
+   $('#timepicker').timepicker({
+       timeFormat: 'HH:mm',
+       interval: 10,
+       minTime: '8',
+       maxTime: '16:00',
+       defaultTime: '8',
+       startTime: '08:00',
+       dynamic: false,
+       dropdown: true,
+       scrollbar: true
+   });
+ } );
   </script>
 </body>
 </html>

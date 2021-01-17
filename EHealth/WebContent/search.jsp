@@ -66,21 +66,5 @@
 			</form>
 		</div>
 	</div>
-	<%--<script>
-		var data = $('#export-information').val();
-		document.getElementById("export-information").addEventListener("click", function(event){
-			event.preventDefault();
-			$.ajax({
-			     url: "/menu", 
-			     type: "post", 
-			     data: {submitType: data},
-			     success: 
-		            function(msg){
-		                // msg is the response you got from the server!
-		                alert("Email Sent");
-		            }                   
-			});
-		});
-	</script>--%>
 </body>
 </html>

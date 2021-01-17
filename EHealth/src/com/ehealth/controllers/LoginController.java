@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 		//get user from database with user name and password
 		UserDAO userDAO = new UserDAOImpl();
 		User user = userDAO.getUserFromDB(username, password);
-		
+		//get appoinment to check if user already made appointment or not
 		AppointmentDAO appointmentDAO = new AppointmentDAOImpl();
 		Appointment appointment = appointmentDAO.getAppointmentInfo(username);
 		System.out.println(appointment);
@@ -58,8 +58,10 @@ public class LoginController extends HttpServlet {
 		//check Admin
 		if (adminDAO.checkAdmin(username, password)==true){
             java.util.List<User>users = userDAO.getAllUsers();
+            //save all users to session
             session.setAttribute("users",users);
             request.setAttribute("users", users);
+            //page redirection
             request.getRequestDispatcher("admin.jsp").forward(request, response);
         }
 		//Login 
@@ -69,8 +71,8 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("non_encrypt_password", password);
 			session.setAttribute("lat", lat );
 	 		session.setAttribute("lon", lon );
-	 		System.out.println(session.getAttribute("lat"));
-			System.out.println(session.getAttribute("lon"));
+	 		System.out.println("lat:"+session.getAttribute("lat"));
+			System.out.println("lon:"+session.getAttribute("lon"));
 			//In case user haven't input information, go to page update.jsp. In case already input, go to page index.jsp
 			if (user.getFirstName()==null && user.getLastName()==null && user.getDate_of_birth()==null && user.getInsuranceType()==null && user.getInsuranceName()==null && user.getHealth_information()==null ) {
 				//page redirection
@@ -83,7 +85,6 @@ public class LoginController extends HttpServlet {
 				request.getRequestDispatcher("appointment.jsp").forward(request, response);
 			} else {
 				//page redirection
-				//response.sendRedirect("search.jsp");
 				request.getRequestDispatcher("search.jsp").forward(request, response);
 			}
 		//In case user name and password is not found in DB

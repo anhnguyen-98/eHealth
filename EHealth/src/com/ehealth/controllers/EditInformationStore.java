@@ -28,17 +28,17 @@ public class EditInformationStore extends HttpServlet {
         super();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	//get all users from session
     	HttpSession session = request.getSession();
-
         ArrayList<User> users = (ArrayList<User>) session.getAttribute("users");
-
+        //get admin click
         String user_edit_index_String = request.getParameter("edit_index");
         Integer user_edit_index = Integer.valueOf(user_edit_index_String);
-
         User user = users.get(user_edit_index);
         session.removeAttribute("users");
         session.setAttribute("username", user.getUsername());
         request.setAttribute("username", user.getUsername());
+        //page redirection
         request.getRequestDispatcher("admin-edit-user.jsp").forward(request, response);
     
 	}

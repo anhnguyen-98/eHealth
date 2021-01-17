@@ -29,7 +29,7 @@
 				</div>
 				<div class="form-group">
 					<label for="password" id="password-label">Re-type Password*</label>
-					<input type="password" id="password" class="form-control" name="passwordRetype" required>
+					<input type="password" id="passwordRetype" class="form-control" name="passwordRetype" required>
 				</div>
 				<div class="flex-container">
 					<a href="login.jsp">Login</a>

@@ -20,16 +20,16 @@
 			<button class="menu-btn" id="export-information" type="submit" name="menu" value="export">Export Information</button>
 			<button class="menu-btn" id="logout" type="submit" name="menu" value="logout">Logout</button>
 		</form>
-		<div class="doctor_content">
+		<div class="appointment_content">
 			<form class="sub_container" action="shift-cancel-appointment" method="post">
 				<table class="styled-table" border = "1" align = "center"> 
 		        	<thead>
 		         		<tr>
-				            <th style="text-align: center" colspan="2">Your information</th>
+				            <th style="text-align: center; font-size: 25px;" colspan="2">Your information</th>
 		            	</tr>
 			        </thead> 
 			        <tr>
-			         	<td style="width: 200px">First name</td>
+			         	<td style="width: 79px">First name</td>
 			            <td><% out.print(user.getFirstName()); %></td>
 			         </tr> 
 			         <tr>

@@ -13,7 +13,7 @@
 			<button class="menu-btn" id="edit-information" type="submit" name="menu" value="information">Your Information</button>
 			<button class="menu-btn" id="logout" type="submit" name="menu" value="logout">Logout</button>
 		</form>
-		<div class="doctor_content">
+		<div class="appointment_content">
 			<div class="sub_container">
 				Successful cancellation!
 				<a href="search.jsp">New appointment</a>
